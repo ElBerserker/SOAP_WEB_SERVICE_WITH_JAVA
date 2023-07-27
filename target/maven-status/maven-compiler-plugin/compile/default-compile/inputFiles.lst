@@ -1,0 +1,9 @@
+/home/berserker/Documents/Proyecto_web_service10_07_23/SOAP_JAVA/SOAP_WEB_SERVICE_WITH_JAVA/src/main/java/com/lynx/sistemasatisfaccionws/SistemaSatisfaccionWS.java
+/home/berserker/Documents/Proyecto_web_service10_07_23/SOAP_JAVA/SOAP_WEB_SERVICE_WITH_JAVA/src/main/java/com/lynx/sistemasatisfaccionws/entidades/EncuestaDTO.java
+/home/berserker/Documents/Proyecto_web_service10_07_23/SOAP_JAVA/SOAP_WEB_SERVICE_WITH_JAVA/src/main/java/com/lynx/sistemasatisfaccionws/servicios/ServicioEncuesta.java
+/home/berserker/Documents/Proyecto_web_service10_07_23/SOAP_JAVA/SOAP_WEB_SERVICE_WITH_JAVA/src/main/java/com/lynx/sistemasatisfaccionws/servicios/ServicioEncuestaImpl.java
+/home/berserker/Documents/Proyecto_web_service10_07_23/SOAP_JAVA/SOAP_WEB_SERVICE_WITH_JAVA/src/main/java/com/lynx/sistemasatisfaccionws/servicios/Test.java
+/home/berserker/Documents/Proyecto_web_service10_07_23/SOAP_JAVA/SOAP_WEB_SERVICE_WITH_JAVA/src/main/java/com/lynx/sistemasatisfaccionws/entidades/UsuarioDTO.java
+/home/berserker/Documents/Proyecto_web_service10_07_23/SOAP_JAVA/SOAP_WEB_SERVICE_WITH_JAVA/src/main/java/com/lynx/sistemasatisfaccionws/entidades/EncuestaDAO.java
+/home/berserker/Documents/Proyecto_web_service10_07_23/SOAP_JAVA/SOAP_WEB_SERVICE_WITH_JAVA/src/main/java/com/lynx/sistemasatisfaccionws/conexion_db/Conexion.java
+/home/berserker/Documents/Proyecto_web_service10_07_23/SOAP_JAVA/SOAP_WEB_SERVICE_WITH_JAVA/src/main/java/com/lynx/sistemasatisfaccionws/entidades/UsuarioDAO.java
