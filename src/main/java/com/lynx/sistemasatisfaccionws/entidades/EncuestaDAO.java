@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EncuestaDAO {
+    private static final String SQL_GET_LEVEL_SATISFACTION = "CALL obtenerNivelesDeSatisfaccion()";
     private static final String SQL_SELECT = "SELECT * FROM satisfaction_survey";
     private static final String SQL_INSERT = "INSERT INTO satisfaction_survey(level_of_satisfaction, coment, folio_ticket) VALUES (?, ?, ?)";
     
@@ -80,4 +81,37 @@ public class EncuestaDAO {
             }
         }
     }
+
+	 public int[]  obtenerNivelesDeSatisfaccion() throws ClassNotFoundException{
+	 	int nivelesDeSatisfaccion[] = new int[3];
+		int iterador = 0;;
+
+		Connection conexion = null;
+		PreparedStatement sentencia_sql = null;
+		ResultSet result_consulta = null;
+
+		try{
+			conexion = Conexion.getConnection();
+			sentencia_sql = conexion.prepareStatement(SQL_GET_LEVEL_SATISFACTION);
+			result_consulta = sentencia_sql.executeQuery();
+
+			while(result_consulta.next()){
+				 nivelesDeSatisfaccion[iterador] = result_consulta.getInt(1);
+				 System.out.print("" + nivelesDeSatisfaccion[iterador] + "\n");
+				 iterador++;
+			}
+		}catch(SQLException ex){
+			ex.printStackTrace(System.out);
+		}finally{
+			try{
+				Conexion.close(result_consulta);
+				Conexion.close(sentencia_sql);
+				Conexion.close(conexion);
+			}catch(SQLException ex){
+				ex.printStackTrace(System.out);
+			}
+		
+		}
+		return nivelesDeSatisfaccion;
+	 }
 }

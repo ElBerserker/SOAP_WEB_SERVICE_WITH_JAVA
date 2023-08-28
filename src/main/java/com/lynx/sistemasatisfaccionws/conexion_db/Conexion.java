@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 public class Conexion {
     //definicion de las credenciales para la base de datos.
-    public static String cadena__de_conexion = "jdbc:mysql://www.lynx.model:3306/satisfaction_system";
+    public static String cadena__de_conexion = "jdbc:mysql://192.168.1.70:3306/satisfaction_system";
     public static String usuario_base_de_datos = "Berserker_db";
     public static String contrasenia_base_de_datos = "db_maria1.1";
     //public static String CONTROLADOR = "com.mysql.jdbc.Driver";

@@ -7,7 +7,6 @@ import com.lynx.sistemasatisfaccionws.entidades.UsuarioDTO;
 
 @WebService
 public interface ServicioEncuesta {
-    
     @WebMethod
     public String aplicarEncuesta(int nivel_satisfaccion, String comentario, String folio);
     
@@ -22,4 +21,10 @@ public interface ServicioEncuesta {
     
     @WebMethod
     public List<UsuarioDTO> listarUsuarios();
+
+    @WebMethod
+    public int validarCredenciales(String nombre_usuario, String contrasenia_usuario);
+
+    @WebMethod
+    public int[] mostrarNivelesDeSatisfaccion();
 }

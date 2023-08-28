@@ -7,6 +7,7 @@ import com.lynx.sistemasatisfaccionws.entidades.EncuestaDTO;
 import com.lynx.sistemasatisfaccionws.entidades.EncuestaDAO;
 import com.lynx.sistemasatisfaccionws.entidades.UsuarioDTO;
 import com.lynx.sistemasatisfaccionws.entidades.UsuarioDAO;
+import com.lynx.sistemasatisfaccionws.funciones.FuncionesUsuario;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +15,10 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 
-@Stateless
+@Stateless//Investigar.
 @WebService(endpointInterface = "com.lynx.sistemasatisfaccionws.servicios.ServicioEncuesta")
 public class ServicioEncuestaImpl implements ServicioEncuesta {
-
-    @Override
+ @Override
     public String aplicarEncuesta(int nivel_satisfaccion, String comentario, String folio) {
         EncuestaDAO encuestaDAO = new EncuestaDAO();
         EncuestaDTO nueva_encuesta = new EncuestaDTO(nivel_satisfaccion, comentario, folio);
@@ -26,11 +26,11 @@ public class ServicioEncuestaImpl implements ServicioEncuesta {
             encuestaDAO.InsertarEncuesta(nueva_encuesta);
         } catch (Exception e) {
             System.out.print("Error : " + e + " Fin#");
-            System.out.print("Error : " + e.getCause() + " Fin#");
+            //System.out.print("Error : " + e.getCause() + " Fin#");
         }
         return "" + nueva_encuesta;
     }
-
+	 //@param 
     @Override
     public String registrarUsuario(String nombre_usuario, String contrasenia_usuario, String tipo_usuario, String estado_usuario) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -39,23 +39,23 @@ public class ServicioEncuestaImpl implements ServicioEncuesta {
             usuarioDAO.InsertarUsuario(nuevo_usuario);
         } catch (Exception e) {
             System.out.print("Error : " + e + " Fin#");
-            System.out.print("Error : " + e.getCause() + " Fin#");
+            //System.out.print("Error : " + e.getCause() + " Fin#");
         }
         return "" + nuevo_usuario;
     }
 
     @Override
-    public String acualizarUsuario(String nombre_usuario, String nuevo_nombre,String contrasenia_usuario, String tipo_usuario, String estado_usuario) {
+    public String acualizarUsuario(String nombre_usuario, String nuevo_nombre, String contrasenia_usuario, String tipo_usuario, String estado_usuario) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         UsuarioDTO usuario_actualizado = new UsuarioDTO(nuevo_nombre, contrasenia_usuario, tipo_usuario, estado_usuario);
 
         usuarioDAO.actualizarUsuario(usuario_actualizado, nombre_usuario);
-        
+
         return "" + usuario_actualizado;
     }
 
     @Override
-    public String eliminarUsuario(String nombre_usuario){
+    public String eliminarUsuario(String nombre_usuario) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         UsuarioDTO usuario_eliminado = new UsuarioDTO(nombre_usuario);
 
@@ -67,12 +67,39 @@ public class ServicioEncuestaImpl implements ServicioEncuesta {
     public List<UsuarioDTO> listarUsuarios() {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         List<UsuarioDTO> usuarios = null;
-        
+
         try {
             usuarios = usuarioDAO.consultarTodosLosUsuarios();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e){
+            //e.getCause().printStackTrace();
         }
         return usuarios;
+    }
+
+    @Override
+    public int validarCredenciales(String nombre_usuario, String contrasenia_usuario) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        FuncionesUsuario funcionesUsuario = new FuncionesUsuario();
+        int acceso = 0;
+        try {
+            acceso = funcionesUsuario.validarAcceso(nombre_usuario, contrasenia_usuario);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return acceso;
+    }
+
+    @Override
+    public int[] mostrarNivelesDeSatisfaccion() {
+        int nivelesDeSatisfaccion[] = new int[3];
+        EncuestaDAO encuestaDAO = new EncuestaDAO();
+        try {
+            nivelesDeSatisfaccion = encuestaDAO.obtenerNivelesDeSatisfaccion();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nivelesDeSatisfaccion;
     }
 }
