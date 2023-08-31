@@ -8,6 +8,7 @@ import com.lynx.sistemasatisfaccionws.entidades.EncuestaDAO;
 import com.lynx.sistemasatisfaccionws.entidades.UsuarioDTO;
 import com.lynx.sistemasatisfaccionws.entidades.UsuarioDAO;
 import com.lynx.sistemasatisfaccionws.funciones.FuncionesUsuario;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +50,13 @@ public class ServicioEncuestaImpl implements ServicioEncuesta {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         UsuarioDTO usuario_actualizado = new UsuarioDTO(nuevo_nombre, contrasenia_usuario, tipo_usuario, estado_usuario);
 
-        usuarioDAO.actualizarUsuario(usuario_actualizado, nombre_usuario);
+     try {
+         usuarioDAO.actualizarUsuario(usuario_actualizado, nombre_usuario);
+     } catch (SQLException ex) {
+         Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (ClassNotFoundException ex) {
+         Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+     }
 
         return "" + usuario_actualizado;
     }
@@ -59,7 +66,13 @@ public class ServicioEncuestaImpl implements ServicioEncuesta {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         UsuarioDTO usuario_eliminado = new UsuarioDTO(nombre_usuario);
 
-        usuarioDAO.eliminarUsuario(usuario_eliminado);
+     try {
+         usuarioDAO.eliminarUsuario(usuario_eliminado);
+     } catch (SQLException ex) {
+         Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (ClassNotFoundException ex) {
+         Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+     }
         return "" + usuario_eliminado;
     }
 
@@ -87,7 +100,9 @@ public class ServicioEncuestaImpl implements ServicioEncuesta {
             acceso = funcionesUsuario.validarAcceso(nombre_usuario, contrasenia_usuario);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (SQLException ex) {
+         Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+     }
         return acceso;
     }
 
@@ -99,7 +114,9 @@ public class ServicioEncuestaImpl implements ServicioEncuesta {
             nivelesDeSatisfaccion = encuestaDAO.obtenerNivelesDeSatisfaccion();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (SQLException ex) {
+         Logger.getLogger(ServicioEncuestaImpl.class.getName()).log(Level.SEVERE, null, ex);
+     }
         return nivelesDeSatisfaccion;
     }
 }

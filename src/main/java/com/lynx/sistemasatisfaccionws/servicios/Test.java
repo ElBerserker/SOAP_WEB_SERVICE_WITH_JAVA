@@ -4,12 +4,13 @@ import com.lynx.sistemasatisfaccionws.entidades.UsuarioDTO;
 import com.lynx.sistemasatisfaccionws.entidades.UsuarioDAO;
 import com.lynx.sistemasatisfaccionws.entidades.EncuestaDTO;
 import com.lynx.sistemasatisfaccionws.entidades.EncuestaDAO;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Test {
-    public static void main(String args[]) throws InstantiationException, IllegalAccessException{
+    public static void main(String args[]) throws InstantiationException, IllegalAccessException, SQLException{
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         EncuestaDAO encuestaDAO = new EncuestaDAO();
         //######################################################################    

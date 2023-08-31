@@ -30,5 +30,32 @@
             <artifactId>javax.jws-api</artifactId>
             <version>1.1</version>
         </dependency>
+
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.7.9</version>
+                <configuration>
+                    <container>
+                        <containerId>glassfish5.1</containerId>
+                        <type>remote</type>
+                    </container>
+                    <configuration>
+                        <type>runtime</type>
+                        <properties>
+                            <cargo.remote.uri>http://www.lynx.pruebas:4848</cargo.remote.uri>
+                            <cargo.remote.username>admin</cargo.remote.username>
+                            <cargo.remote.password>Concorde1975</cargo.remote.password>
+                        </properties>
+                    </configuration>
+                    <deployer>
+                        <type>remote</type>
+                    </deployer>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

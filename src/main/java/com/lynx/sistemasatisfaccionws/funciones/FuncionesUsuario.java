@@ -8,10 +8,11 @@ package com.lynx.sistemasatisfaccionws.funciones;
 
 import com.lynx.sistemasatisfaccionws.entidades.UsuarioDTO;
 import com.lynx.sistemasatisfaccionws.entidades.UsuarioDAO;
+import java.sql.SQLException;
 
 public class FuncionesUsuario{
    //Este metodo de validacion retona un 1 si las credenciales de acceso son validas y un 0 si no.
- 	public int validarAcceso(String name_of_user, String password) throws ClassNotFoundException{
+ 	public int validarAcceso(String name_of_user, String password) throws ClassNotFoundException, SQLException{
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		UsuarioDTO usuarioDTO = null;
 			
